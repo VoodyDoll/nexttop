@@ -1,13 +1,14 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import {Noto_Sans} from 'next/font/google'
-
-const zen=Noto_Sans({
-  subsets:['cyrillic','latin'],
-  weight:['300','400','500','600','700'],
-  display:'swap',
-  variable:'--font-zen',
-  style:['normal']
+import { Noto_Sans } from 'next/font/google'
+  import Link from "next/link";
+import style from '../css/main.module.css'
+const zen = Noto_Sans({
+  subsets: ['cyrillic', 'latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-zen',
+  style: ['normal']
 })
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,8 +29,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={zen.className} >
-<div style={{height:'110px',weight:'auto',backgroundColor:'red'}}>Руперт</div>
+      <body className={zen.className} style={{ height: '50px', weight: 'auto', backgroundColor: '' }} >
+        <div style={{padding:'15px'}} >    
+          <center>      
+            <Link className={style.main} href={'abaut'}>Главная</Link>
+            <Link className={style.main} href={'/main/god'}>Пица</Link>
+            <Link className={style.main} href={'/main/swing'}>Кухня фри</Link>
+            <Link className={style.main} href={'/main/fetch'}>Суши</Link>
+            <Link className={style.main} href={'/statics'}>Обеды</Link>
+            </center>
+        </div>
 
         {children}
       </body>
