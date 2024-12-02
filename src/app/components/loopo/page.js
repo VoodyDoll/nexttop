@@ -1,4 +1,3 @@
-// import Forma from '../components/forma/Forma'
 import Link from "next/link";
 async function getData() {
     const res = await fetch(`http://localhost:5000/1`)
@@ -16,12 +15,12 @@ export default async function Page() {
     const data = await getData()
 
     return <main>
-        {/* <Forma/> */}
+       
         <center>
 
         {data.map((item) => {
             return (
-                <p><Link href={`loopo/${item.id}`} >{item.id}</Link></p>
+                <p><Link href={`loopo/${item.id}`}>{item.id}</Link></p>
                 // href={'abaut'}
                 // <p>Link{item.id}</p>
             )
