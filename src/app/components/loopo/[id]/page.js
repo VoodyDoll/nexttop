@@ -1,19 +1,36 @@
 import React from 'react'
 
-export default async function Post({params}) {
-    const { id } = await params
-    // console.log(id)
+async function getDat(id) {
+    id = Number(id)
 
-const res = await fetch(`http://localhost:5000/loopo/${id}`)
-console.log(res)
+    const res = await fetch(`http://localhost:5000/loopo/${id}`)
+    // Возвращаемое значение не сериализуется,
+    // что позволяет возвращать Date, Map, Set и др.
     
-    return (
-        <>
-        <h3>{res.title}</h3>
-        <h3>Руперт</h3>
-        </>
-    )
-    return true
+    if (!res.ok) {
+        // Это активирует ближайшего предохранителя `error.js`
+        throw new Error('Провал получения данных')
+    }
+
+    return res.json()
+}
+
+
+export default async function Page({ params }) {
+    let { id } = await params
+    id = Number(id)
+    const data = await getDat(id)
+    console.log(data)
+    return <main>
+
+        <center>
+            {data.map((item) => {
+                return (
+                    <p>{item.title}</p>
+                )
+            })}
+        </center>
+    </main>
 }
 
 

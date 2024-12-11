@@ -1,6 +1,6 @@
-// import Link from "next/link";
+import Link from "next/link";
 async function getData() {
-    const res = await fetch(`http://localhost:5000/dashboard/api/books`)
+    const res = await fetch(`http://localhost:5000/1`)
     // Возвращаемое значение не сериализуется,
     // что позволяет возвращать Date, Map, Set и др.
 
@@ -9,7 +9,7 @@ async function getData() {
         throw new Error('Провал получения данных')
     }
 
-    return res.text()
+    return res.json()
 }
 export default async function Page() {
     const data = await getData()
@@ -17,15 +17,14 @@ export default async function Page() {
     return <main>
        
         <center>
-            <p>{data}</p>
 
-        {/* {data.map((item) => {
+        {data.map((item) => {
             return (
                 <p><Link href={`loopo/${item.id}`}>{item.id}</Link></p>
                 // href={'abaut'}
                 // <p>Link{item.id}</p>
             )
-        })} */}
+        })}
     </center>
     </main>
 }
