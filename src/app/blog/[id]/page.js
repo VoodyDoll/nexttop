@@ -1,4 +1,20 @@
+
 export default async function Page({ params }) {
-    const slug = await params.id
-    return <div>My Post: {slug}</div>
-  }
+    let slug = await params.id
+
+    const res = await fetch(`http://localhost:5000/loopo/${slug}`)
+    const posts = await res.json()
+    // Возвращаемое значение не сериализуется,
+    // что позволяет возвращать Date, Map, Set и др.
+    console.log(slug)
+
+    return <div>
+       <main>My Post: {posts.title}</main> 
+
+        {/* <style jsx>{`main { color:red }`}</style>   */}
+            
+              
+       
+       
+    </div>
+}

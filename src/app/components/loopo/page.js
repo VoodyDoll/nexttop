@@ -1,4 +1,7 @@
+// 'use client'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
+
 async function getData() {
     const res = await fetch(`http://localhost:5000/1`)
     // Возвращаемое значение не сериализуется,
